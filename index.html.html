@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>EVOZA – Every Theme. A New Experience.</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Cinzel:wght@400;600;700&display=swap');
+
+/* ══════════════════════ RESET & ROOT ══════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --gold:#c9a84c;
+  --gold-light:#e8c97a;
+  --gold-dark:#9a7a2e;
+  --green:#5a8f4a;
+  --green-light:#7ab85a;
+  --black:#0a0a0a;
+  --dark:#111111;
+  --dark2:#181818;
+  --dark3:#222222;
+  --text:#f0ede6;
+  --text-muted:rgba(240,237,230,0.5);
+  --border:rgba(201,168,76,0.2);
+}
+html{scroll-behavior:smooth;}
+body{background:var(--black);color:var(--text);font-family:'Inter',sans-serif;overflow-x:hidden;}
+
+/* ══════════════════════ SCROLLBAR ══════════════════════ */
+::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar-track{background:var(--black);}
+::-webkit-scrollbar-thumb{background:var(--gold-dark);border-radius:3px;}
+
+/* ══════════════════════ NAVBAR ══════════════════════ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 60px;height:80px;
+  background:rgba(10,10,10,0.92);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  transition:all 0.3s;
+}
+.nav-logo{display:flex;align-items:center;gap:14px;}
+.nav-logo img{height:48px;width:48px;object-fit:contain;}
+.nav-brand{font-family:'Cinzel',serif;font-size:22px;font-weight:700;color:var(--gold);letter-spacing:4px;}
+.nav-links{display:flex;gap:36px;list-style:none;}
+.nav-links a{font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color 0.3s;font-weight:500;}
+.nav-links a:hover{color:var(--gold);}
+.nav-cta{padding:10px 28px;border:1px solid var(--gold);border-radius:2px;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);text-decoration:none;font-weight:600;transition:all 0.3s;}
+.nav-cta:hover{background:var(--gold);color:var(--black);}
+
+/* ══════════════════════ HERO ══════════════════════ */
+#hero{
+  height:100vh;min-height:700px;
+  position:relative;
+  display:flex;align-items:center;justify-content:center;
+  text-align:center;overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background-image:url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920&h=1080&fit=crop&auto=format&q=80');
+  background-size:cover;background-position:center;
+  animation:hero-zoom 12s ease-in-out infinite alternate;
+}
+@keyframes hero-zoom{from{transform:scale(1);}to{transform:scale(1.08);}}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,10,0.75) 0%,rgba(10,10,10,0.6) 50%,rgba(10,10,10,0.95) 100%);}
+.hero-content{position:relative;z-index:2;max-width:900px;padding:0 24px;}
+.hero-logo{width:140px;height:140px;object-fit:contain;margin:0 auto 32px;filter:drop-shadow(0 0 30px rgba(201,168,76,0.4));animation:logo-pulse 3s ease-in-out infinite alternate;}
+@keyframes logo-pulse{from{filter:drop-shadow(0 0 20px rgba(201,168,76,0.3));}to{filter:drop-shadow(0 0 50px rgba(201,168,76,0.6));}}
+.hero-eyebrow{font-size:12px;letter-spacing:6px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;font-weight:500;}
+.hero-title{font-family:'Cinzel',serif;font-size:72px;font-weight:700;line-height:1.1;color:#fff;margin-bottom:16px;}
+.hero-title .gold{color:var(--gold);}
+.hero-tagline{font-family:'Cormorant Garamond',serif;font-size:24px;font-style:italic;color:rgba(255,255,255,0.7);margin-bottom:48px;letter-spacing:2px;}
+.hero-buttons{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;}
+.btn-primary{padding:16px 44px;background:var(--gold);color:var(--black);font-size:13px;letter-spacing:3px;text-transform:uppercase;font-weight:700;border:none;border-radius:2px;cursor:pointer;text-decoration:none;transition:all 0.3s;}
+.btn-primary:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 10px 30px rgba(201,168,76,0.3);}
+.btn-secondary{padding:16px 44px;background:transparent;color:var(--gold);font-size:13px;letter-spacing:3px;text-transform:uppercase;font-weight:600;border:1px solid var(--gold);border-radius:2px;cursor:pointer;text-decoration:none;transition:all 0.3s;}
+.btn-secondary:hover{background:rgba(201,168,76,0.1);transform:translateY(-2px);}
+.hero-scroll{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--text-muted);font-size:11px;letter-spacing:3px;text-transform:uppercase;}
+.scroll-line{width:1px;height:50px;background:linear-gradient(to bottom,var(--gold),transparent);animation:scroll-anim 2s ease-in-out infinite;}
+@keyframes scroll-anim{0%{opacity:0;transform:scaleY(0);transform-origin:top;}50%{opacity:1;}100%{opacity:0;transform:scaleY(1);transform-origin:top;}}
+
+/* ══════════════════════ SECTION BASE ══════════════════════ */
+section{padding:100px 60px;}
+.section-eyebrow{font-size:11px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;font-weight:500;}
+.section-title{font-family:'Cinzel',serif;font-size:48px;font-weight:700;color:#fff;line-height:1.2;margin-bottom:16px;}
+.section-title .gold{color:var(--gold);}
+.section-sub{font-size:16px;color:var(--text-muted);line-height:1.8;max-width:600px;}
+.section-divider{width:60px;height:1px;background:var(--gold);margin:20px 0;}
+.container{max-width:1200px;margin:0 auto;}
+
+/* ══════════════════════ ABOUT / INTRO ══════════════════════ */
+#about{background:var(--dark);}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.about-img-wrap{position:relative;}
+.about-img{width:100%;border-radius:4px;object-fit:cover;height:500px;filter:brightness(0.85);}
+.about-img-badge{
+  position:absolute;bottom:-24px;right:-24px;
+  width:160px;height:160px;border-radius:50%;
+  background:var(--black);border:1px solid var(--gold);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:16px;
+}
+.badge-num{font-family:'Cinzel',serif;font-size:36px;font-weight:700;color:var(--gold);}
+.badge-txt{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-top:4px;}
+.about-pillars{display:flex;flex-direction:column;gap:24px;margin-top:40px;}
+.pillar{display:flex;align-items:flex-start;gap:20px;}
+.pillar-icon{width:48px;height:48px;border:1px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;background:rgba(201,168,76,0.08);}
+.pillar-title{font-family:'Cinzel',serif;font-size:16px;font-weight:600;color:var(--gold);margin-bottom:4px;}
+.pillar-desc{font-size:14px;color:var(--text-muted);line-height:1.7;}
+
+/* ══════════════════════ THEMES ══════════════════════ */
+#themes{background:var(--black);position:relative;overflow:hidden;}
+#themes::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent);}
+.themes-header{text-align:center;margin-bottom:60px;}
+.themes-header .section-sub{margin:0 auto;}
+.themes-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:48px;}
+.theme-card{
+  position:relative;border-radius:4px;overflow:hidden;
+  height:220px;cursor:pointer;
+  border:1px solid rgba(201,168,76,0.1);
+  transition:all 0.4s;
+}
+.theme-card:hover{transform:translateY(-8px);border-color:var(--gold);}
+.theme-card img{width:100%;height:100%;object-fit:cover;filter:brightness(0.5);transition:all 0.4s;}
+.theme-card:hover img{filter:brightness(0.7);transform:scale(1.05);}
+.theme-card-content{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;text-align:center;}
+.theme-emoji{font-size:36px;margin-bottom:10px;}
+.theme-name{font-family:'Cinzel',serif;font-size:13px;font-weight:600;color:#fff;letter-spacing:2px;text-transform:uppercase;}
+.theme-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:60%;background:linear-gradient(to top,rgba(0,0,0,0.8),transparent);}
+.theme-card-content{z-index:2;}
+
+/* ══════════════════════ JOURNEY ══════════════════════ */
+#journey{background:var(--dark2);}
+.journey-layout{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.journey-steps{display:flex;flex-direction:column;gap:0;}
+.journey-step{display:flex;gap:24px;padding:28px 0;border-bottom:1px solid var(--border);position:relative;}
+.journey-step:last-child{border-bottom:none;}
+.step-num{
+  font-family:'Cinzel',serif;font-size:32px;font-weight:700;
+  color:var(--gold);opacity:0.3;min-width:52px;line-height:1;
+  transition:opacity 0.3s;
+}
+.journey-step:hover .step-num{opacity:1;}
+.step-content{}
+.step-name{font-family:'Cinzel',serif;font-size:18px;font-weight:600;color:#fff;margin-bottom:6px;}
+.step-desc{font-size:14px;color:var(--text-muted);line-height:1.7;}
+.journey-img{position:relative;}
+.journey-img img{width:100%;height:600px;object-fit:cover;border-radius:4px;filter:brightness(0.75);}
+.journey-img-overlay{position:absolute;bottom:0;left:0;right:0;padding:40px;background:linear-gradient(to top,rgba(0,0,0,0.9),transparent);}
+.journey-quote{font-family:'Cormorant Garamond',serif;font-size:22px;font-style:italic;color:var(--gold);line-height:1.5;}
+
+/* ══════════════════════ REVENUE ══════════════════════ */
+#revenue{background:var(--black);}
+.revenue-layout{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
+.revenue-streams{display:flex;flex-direction:column;gap:16px;margin-top:16px;}
+.rev-card{
+  display:flex;align-items:center;gap:20px;
+  padding:20px 24px;
+  border:1px solid var(--border);
+  border-left:3px solid var(--gold);
+  border-radius:2px;
+  background:rgba(201,168,76,0.03);
+  transition:all 0.3s;cursor:default;
+}
+.rev-card:hover{background:rgba(201,168,76,0.08);border-left-color:var(--gold-light);transform:translateX(6px);}
+.rev-num{font-family:'Cinzel',serif;font-size:28px;font-weight:700;color:var(--gold);opacity:0.4;min-width:40px;}
+.rev-info .rev-title{font-size:15px;font-weight:600;color:#fff;margin-bottom:3px;}
+.rev-info .rev-sub{font-size:12px;color:var(--text-muted);}
+.rev-tag{margin-left:auto;padding:4px 12px;border:1px solid var(--border);border-radius:2px;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);white-space:nowrap;}
+.membership-box{
+  margin-top:40px;padding:40px;
+  border:1px solid var(--gold);
+  background:linear-gradient(135deg,rgba(201,168,76,0.08),rgba(90,143,74,0.05));
+  border-radius:4px;text-align:center;
+}
+.mem-label{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--text-muted);margin-bottom:12px;}
+.mem-price{font-family:'Cinzel',serif;font-size:52px;font-weight:700;color:var(--gold);line-height:1;}
+.mem-unit{font-size:14px;color:var(--text-muted);margin-top:8px;}
+.mem-features{display:flex;flex-direction:column;gap:10px;margin-top:24px;text-align:left;}
+.mem-feat{display:flex;align-items:center;gap:12px;font-size:14px;color:var(--text-muted);}
+.mem-feat::before{content:'✦';color:var(--gold);font-size:10px;flex-shrink:0;}
+
+/* ══════════════════════ TECHNOLOGY ══════════════════════ */
+#technology{background:var(--dark);}
+.tech-header{text-align:center;margin-bottom:60px;}
+.tech-header .section-sub{margin:0 auto;}
+.tech-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.tech-card{
+  padding:36px 28px;
+  border:1px solid var(--border);
+  border-radius:4px;
+  background:var(--dark2);
+  transition:all 0.3s;
+  position:relative;overflow:hidden;
+}
+.tech-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,var(--gold-dark),var(--gold),var(--gold-dark));opacity:0;transition:opacity 0.3s;}
+.tech-card:hover{transform:translateY(-6px);border-color:var(--gold);}
+.tech-card:hover::before{opacity:1;}
+.tech-card-icon{font-size:38px;margin-bottom:20px;}
+.tech-card-title{font-family:'Cinzel',serif;font-size:17px;font-weight:600;color:var(--gold);margin-bottom:10px;}
+.tech-card-desc{font-size:14px;color:var(--text-muted);line-height:1.7;}
+.os-banner{
+  margin-top:40px;padding:48px;
+  background:linear-gradient(135deg,rgba(201,168,76,0.08),rgba(90,143,74,0.06));
+  border:1px solid var(--gold);border-radius:4px;
+  display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;
+}
+.os-title{font-family:'Cinzel',serif;font-size:28px;font-weight:700;color:var(--gold);margin-bottom:10px;}
+.os-desc{font-size:15px;color:var(--text-muted);line-height:1.8;max-width:600px;}
+.os-badge{text-align:center;padding:24px 36px;border:1px solid var(--border);border-radius:4px;}
+.os-badge-label{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--text-muted);}
+.os-badge-name{font-family:'Cinzel',serif;font-size:20px;font-weight:700;color:#fff;margin-top:8px;}
+
+/* ══════════════════════ GROWTH ══════════════════════ */
+#growth{background:var(--black);position:relative;overflow:hidden;}
+.growth-bg{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1920&h=900&fit=crop&auto=format&q=60');background-size:cover;background-position:center;opacity:0.08;}
+.growth-content{position:relative;z-index:2;}
+.growth-header{text-align:center;margin-bottom:72px;}
+.phases{display:flex;gap:0;position:relative;}
+.phases::before{content:'';position:absolute;top:38px;left:5%;right:5%;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent);}
+.phase{flex:1;text-align:center;padding:0 20px;position:relative;}
+.phase-circle{
+  width:76px;height:76px;border-radius:50%;
+  border:1px solid var(--gold);
+  background:var(--black);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 20px;
+  font-family:'Cinzel',serif;font-size:28px;font-weight:700;color:var(--gold);
+  position:relative;z-index:2;
+  transition:all 0.3s;
+}
+.phase:hover .phase-circle{background:var(--gold);color:var(--black);}
+.phase-title{font-family:'Cinzel',serif;font-size:14px;font-weight:600;color:#fff;margin-bottom:8px;}
+.phase-desc{font-size:12px;color:var(--text-muted);line-height:1.6;}
+.phase-loc{font-size:11px;color:var(--gold);margin-top:6px;letter-spacing:1px;}
+
+/* ══════════════════════ SUSTAINABILITY ══════════════════════ */
+#sustainability{background:var(--dark2);}
+.sust-layout{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.sust-img{position:relative;}
+.sust-img img{width:100%;height:450px;object-fit:cover;border-radius:4px;filter:brightness(0.75);}
+.sust-items{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:32px;}
+.sust-item{display:flex;align-items:flex-start;gap:14px;padding:20px;border:1px solid var(--border);border-radius:4px;background:rgba(90,143,74,0.05);transition:all 0.3s;}
+.sust-item:hover{border-color:var(--green);background:rgba(90,143,74,0.1);}
+.sust-icon{font-size:24px;flex-shrink:0;}
+.sust-text{font-size:13px;color:var(--text-muted);line-height:1.6;}
+
+/* ══════════════════════ CTA SECTION ══════════════════════ */
+#cta{
+  position:relative;overflow:hidden;
+  padding:120px 60px;text-align:center;
+}
+.cta-bg{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1920&h=800&fit=crop&auto=format&q=80');background-size:cover;background-position:center;}
+.cta-overlay{position:absolute;inset:0;background:rgba(10,10,10,0.88);}
+.cta-content{position:relative;z-index:2;}
+.cta-logo{width:100px;height:100px;object-fit:contain;margin:0 auto 32px;filter:drop-shadow(0 0 20px rgba(201,168,76,0.4));}
+.cta-title{font-family:'Cinzel',serif;font-size:52px;font-weight:700;color:#fff;margin-bottom:16px;line-height:1.2;}
+.cta-title .gold{color:var(--gold);}
+.cta-sub{font-family:'Cormorant Garamond',serif;font-size:22px;font-style:italic;color:rgba(255,255,255,0.6);margin-bottom:48px;}
+.cta-stats{display:flex;justify-content:center;gap:80px;margin-bottom:56px;}
+.cta-stat-num{font-family:'Cinzel',serif;font-size:44px;font-weight:700;color:var(--gold);}
+.cta-stat-lbl{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--text-muted);margin-top:6px;}
+
+/* ══════════════════════ FOOTER ══════════════════════ */
+footer{background:var(--dark);border-top:1px solid var(--border);padding:60px 60px 40px;}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:60px;margin-bottom:48px;}
+.footer-brand{}
+.footer-logo{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+.footer-logo img{height:44px;width:44px;object-fit:contain;}
+.footer-logo span{font-family:'Cinzel',serif;font-size:20px;font-weight:700;color:var(--gold);letter-spacing:4px;}
+.footer-desc{font-size:14px;color:var(--text-muted);line-height:1.8;max-width:280px;}
+.footer-tagline{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;color:var(--gold);margin-top:16px;}
+.footer-col-title{font-family:'Cinzel',serif;font-size:13px;font-weight:600;color:#fff;letter-spacing:3px;text-transform:uppercase;margin-bottom:20px;}
+.footer-links{display:flex;flex-direction:column;gap:12px;}
+.footer-links a{font-size:13px;color:var(--text-muted);text-decoration:none;transition:color 0.3s;}
+.footer-links a:hover{color:var(--gold);}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:32px;border-top:1px solid var(--border);}
+.footer-copy{font-size:12px;color:var(--text-muted);letter-spacing:1px;}
+.footer-socials{display:flex;gap:16px;}
+.social-btn{width:36px;height:36px;border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--text-muted);text-decoration:none;transition:all 0.3s;}
+.social-btn:hover{border-color:var(--gold);color:var(--gold);}
+
+/* ══════════════════════ GOLD LINE DECORATORS ══════════════════════ */
+.gold-line{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+.gold-line::before,.gold-line::after{content:'';flex:1;max-width:40px;height:1px;background:var(--gold);}
+.gold-line span{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);}
+
+/* ══════════════════════ FADE IN ANIMATION ══════════════════════ */
+.fade-in{opacity:0;transform:translateY(30px);transition:opacity 0.8s ease,transform 0.8s ease;}
+.fade-in.visible{opacity:1;transform:translateY(0);}
+
+/* ══════════════════════ RESPONSIVE ══════════════════════ */
+@media(max-width:900px){
+  nav{padding:0 24px;}
+  .nav-links{display:none;}
+  section{padding:70px 24px;}
+  .hero-title{font-size:44px;}
+  .about-grid,.journey-layout,.revenue-layout,.sust-layout,.growth-content,.footer-grid{grid-template-columns:1fr;}
+  .themes-grid{grid-template-columns:repeat(2,1fr);}
+  .tech-grid{grid-template-columns:1fr;}
+  .phases{flex-direction:column;gap:32px;}
+  .phases::before{display:none;}
+  .cta-stats{gap:40px;}
+  footer{padding:40px 24px;}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:32px;}
+  .os-banner{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     NAVBAR
+══════════════════════════════════════ -->
+<nav id="navbar">
+  <div class="nav-logo">
+    <img src="evoza_logo.jpg" alt="EVOZA Logo"/>
+    <span class="nav-brand">EVOZA</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#themes">Themes</a></li>
+    <li><a href="#journey">Experience</a></li>
+    <li><a href="#revenue">Membership</a></li>
+    <li><a href="#technology">Technology</a></li>
+    <li><a href="#growth">Vision</a></li>
+  </ul>
+  <a href="#cta" class="nav-cta">Reserve</a>
+</nav>
+
+<!-- ══════════════════════════════════════
+     HERO
+══════════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <img src="evoza_logo.jpg" alt="EVOZA" class="hero-logo"/>
+    <p class="hero-eyebrow">AI-Powered Hospitality · Visakhapatnam, India</p>
+    <h1 class="hero-title">Every Theme.<br><span class="gold">A New Experience.</span></h1>
+    <p class="hero-tagline">The world's first continuously transforming experiential dining destination</p>
+    <div class="hero-buttons">
+      <a href="#themes" class="btn-primary">Explore Themes</a>
+      <a href="#cta" class="btn-secondary">Book a Table</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     ABOUT
+══════════════════════════════════════ -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-img-wrap fade-in">
+        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=1000&fit=crop&auto=format&q=85" alt="EVOZA Dining" class="about-img"/>
+        <div class="about-img-badge">
+          <div class="badge-num">2–3</div>
+          <div class="badge-txt">New theme every few days</div>
+        </div>
+      </div>
+      <div class="fade-in">
+        <p class="section-eyebrow">About EVOZA</p>
+        <h2 class="section-title">Not Just a<br><span class="gold">Restaurant.</span></h2>
+        <div class="section-divider"></div>
+        <p class="section-sub">EVOZA is an AI-powered hospitality and experience company that combines food, technology, entertainment, art, and immersive environments — transforming the way people experience dining.</p>
+        <p class="section-sub" style="margin-top:16px;">A customer should never feel like they are visiting the same restaurant twice.</p>
+        <div class="about-pillars">
+          <div class="pillar">
+            <div class="pillar-icon">🍽️</div>
+            <div>
+              <div class="pillar-title">Hospitality</div>
+              <div class="pillar-desc">Premium food, service, and curated dining experiences crafted for every occasion.</div>
+            </div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon">🎭</div>
+            <div>
+              <div class="pillar-title">Experiences</div>
+              <div class="pillar-desc">Rotating themes, live entertainment, art, and personalized immersive environments.</div>
+            </div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon">🤖</div>
+            <div>
+              <div class="pillar-title">Technology</div>
+              <div class="pillar-desc">AI personalization, smart lighting, projection mapping, and robotics — all working together.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     THEMES
+══════════════════════════════════════ -->
+<section id="themes">
+  <div class="container">
+    <div class="themes-header fade-in">
+      <p class="section-eyebrow">Rotating Themes</p>
+      <h2 class="section-title">One Venue. <span class="gold">Infinite Worlds.</span></h2>
+      <div class="section-divider" style="margin:16px auto;"></div>
+      <p class="section-sub">Every 2–3 days, the same space transforms into a completely different world. The food, lighting, music, decor, and menus all shift to match the theme.</p>
+    </div>
+    <div class="themes-grid">
+      <div class="theme-card fade-in">
+        <img src="https://images.unsplash.com/photo-1534536281715-e28d76689b4d?w=400&h=440&fit=crop&auto=format&q=70" alt="Horror"/>
+        <div class="theme-card-content"><div class="theme-emoji">👻</div><div class="theme-name">Horror & Mystery</div></div>
+      </div>
+      <div class="theme-card fade-in">
+        <img src="https://images.unsplash.com/photo-1446941611757-91d2c3bd3d45?w=400&h=440&fit=crop&auto=format&q=70" alt="Space"/>
+        <div class="theme-card-content"><div class="theme-emoji">🌌</div><div class="theme-name">Space & Galaxy</div></div>
+      </div>
+      <div class="theme-card fade-in">
+        <img src="https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=400&h=440&fit=crop&auto=format&q=70" alt="Forest"/>
+        <div class="theme-card-content"><div class="theme-emoji">🌲</div><div class="theme-name">Enchanted Forest</div></div>
+      </div>
+      <div class="theme-card fade-in">
+        <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=400&h=440&fit=crop&auto=format&q=70" alt="Festival"/>
+        <div class="theme-card-content"><div class="theme-emoji">🎉</div><div class="theme-name">Festival Celebrations</div></div>
+      </div>
+      <div class="theme-card fade-in">
+        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=440&fit=crop&auto=format&q=70" alt="Sci-Fi"/>
+        <div class="theme-card-content"><div class="theme-emoji">🚀</div><div class="theme-name">Sci-Fi Future</div></div>
+      </div>
+      <div class="theme-card fade-in">
+        <img src="https://images.unsplash.com/photo-1587474260584-136574528ed5?w=400&h=440&fit=crop&auto=format&q=70" alt="Indian Culture"/>
+        <div class="theme-card-content"><div class="theme-emoji">🎪</div><div class="theme-name">Indian Culture</div></div>
+      </div>
+      <div class="theme-card fade-in">
+        <img src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=400&h=440&fit=crop&auto=format&q=70" alt="Royal"/>
+        <div class="theme-card-content"><div class="theme-emoji">👑</div><div class="theme-name">Royal & Historical</div></div>
+      </div>
+      <div class="theme-card fade-in">
+        <img src="https://images.unsplash.com/photo-1529543544282-ea669407fca3?w=400&h=440&fit=crop&auto=format&q=70" alt="Fantasy"/>
+        <div class="theme-card-content"><div class="theme-emoji">🪄</div><div class="theme-name">Fantasy & Magic</div></div>
+      </div>
+      <div class="theme-card fade-in">
+        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400&h=440&fit=crop&auto=format&q=70" alt="Seasonal"/>
+        <div class="theme-card-content"><div class="theme-emoji">🍂</div><div class="theme-name">Seasonal Events</div></div>
+      </div>
+      <div class="theme-card fade-in">
+        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&h=440&fit=crop&auto=format&q=70" alt="Regional"/>
+        <div class="theme-card-content"><div class="theme-emoji">🌍</div><div class="theme-name">Regional Culture</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     CUSTOMER JOURNEY
+══════════════════════════════════════ -->
+<section id="journey">
+  <div class="container">
+    <div class="journey-layout">
+      <div class="fade-in">
+        <p class="section-eyebrow">The Experience</p>
+        <h2 class="section-title">Your Journey<br>with <span class="gold">EVOZA</span></h2>
+        <div class="section-divider"></div>
+        <div class="journey-steps">
+          <div class="journey-step"><div class="step-num">01</div><div class="step-content"><div class="step-name">📱 Discover</div><div class="step-desc">Find us through social media, influencers, travel blogs, or word of mouth.</div></div></div>
+          <div class="journey-step"><div class="step-num">02</div><div class="step-content"><div class="step-name">🔍 Explore</div><div class="step-desc">Browse our website or app to see the current theme and what's coming next.</div></div></div>
+          <div class="journey-step"><div class="step-num">03</div><div class="step-content"><div class="step-name">📅 Book</div><div class="step-desc">Reserve your table, event, or exclusive VIP experience in advance.</div></div></div>
+          <div class="journey-step"><div class="step-num">04</div><div class="step-content"><div class="step-name">✨ Experience</div><div class="step-desc">Step into a fully immersive world — food, technology, entertainment, all personalised for you.</div></div></div>
+          <div class="journey-step"><div class="step-num">05</div><div class="step-content"><div class="step-name">📸 Share</div><div class="step-desc">Capture and share your unique experience. Every visit creates new content.</div></div></div>
+          <div class="journey-step"><div class="step-num">06</div><div class="step-content"><div class="step-name">🔁 Return</div><div class="step-desc">A new theme is always waiting. There is always a reason to come back.</div></div></div>
+        </div>
+      </div>
+      <div class="journey-img fade-in">
+        <img src="https://images.unsplash.com/photo-1543007630-9359815b6827?w=800&h=1200&fit=crop&auto=format&q=85" alt="EVOZA Experience"/>
+        <div class="journey-img-overlay">
+          <div class="journey-quote">"Every visit should feel<br>like a new experience."</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     REVENUE / MEMBERSHIP
+══════════════════════════════════════ -->
+<section id="revenue">
+  <div class="container">
+    <div class="revenue-layout">
+      <div class="fade-in">
+        <p class="section-eyebrow">Business Model</p>
+        <h2 class="section-title"><span class="gold">7</span> Revenue Streams</h2>
+        <div class="section-divider"></div>
+        <div class="revenue-streams">
+          <div class="rev-card"><div class="rev-num">01</div><div class="rev-info"><div class="rev-title">Food & Beverage Sales</div><div class="rev-sub">Themed menus, dining, and beverages</div></div><div class="rev-tag">Core</div></div>
+          <div class="rev-card"><div class="rev-num">02</div><div class="rev-info"><div class="rev-title">Premium Experiences</div><div class="rev-sub">VIP seating, private rooms, exclusive dining</div></div><div class="rev-tag">Premium</div></div>
+          <div class="rev-card"><div class="rev-num">03</div><div class="rev-info"><div class="rev-title">VIP Membership</div><div class="rev-sub">Annual membership with exclusive privileges</div></div><div class="rev-tag">Recurring</div></div>
+          <div class="rev-card"><div class="rev-num">04</div><div class="rev-info"><div class="rev-title">Events & Celebrations</div><div class="rev-sub">Birthdays, corporates, private bookings</div></div><div class="rev-tag">Events</div></div>
+          <div class="rev-card"><div class="rev-num">05</div><div class="rev-info"><div class="rev-title">Brand Partnerships</div><div class="rev-sub">Collaborations with brands and artists</div></div><div class="rev-tag">Partners</div></div>
+          <div class="rev-card"><div class="rev-num">06</div><div class="rev-info"><div class="rev-title">Franchise & Licensing</div><div class="rev-sub">National expansion through franchises</div></div><div class="rev-tag">Future</div></div>
+          <div class="rev-card"><div class="rev-num">07</div><div class="rev-info"><div class="rev-title">Experience OS — SaaS</div><div class="rev-sub">Technology platform for hospitality industry</div></div><div class="rev-tag">Vision</div></div>
+        </div>
+      </div>
+      <div class="fade-in">
+        <p class="section-eyebrow">Exclusive Membership</p>
+        <h2 class="section-title">Join the<br><span class="gold">Inner Circle</span></h2>
+        <div class="section-divider"></div>
+        <p class="section-sub">Limited to 50 members. Priority reservations, exclusive events, and privileges no regular guest ever receives.</p>
+        <div class="membership-box">
+          <div class="mem-label">Annual VIP Membership</div>
+          <div class="mem-price">₹25,000</div>
+          <div class="mem-unit">per year · Limited to 50 members</div>
+          <div class="mem-features">
+            <div class="mem-feat">Priority reservations for all themes</div>
+            <div class="mem-feat">Exclusive members-only events</div>
+            <div class="mem-feat">AI-personalised dining preferences</div>
+            <div class="mem-feat">Special celebration packages</div>
+            <div class="mem-feat">Early access to new theme announcements</div>
+            <div class="mem-feat">Dedicated customer concierge</div>
+          </div>
+          <a href="#cta" class="btn-primary" style="display:inline-block;margin-top:28px;">Apply for Membership</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     TECHNOLOGY
+══════════════════════════════════════ -->
+<section id="technology">
+  <div class="container">
+    <div class="tech-header fade-in">
+      <p class="section-eyebrow">Technology</p>
+      <h2 class="section-title">Powered by <span class="gold">AI & Smart Tech</span></h2>
+      <div class="section-divider" style="margin:16px auto;"></div>
+      <p class="section-sub">Technology is the backbone of EVOZA. It enables seamless theme transformations, personalised experiences, and efficient operations — all from a central intelligence platform.</p>
+    </div>
+    <div class="tech-grid">
+      <div class="tech-card fade-in"><div class="tech-card-icon">🧠</div><div class="tech-card-title">Artificial Intelligence</div><div class="tech-card-desc">AI learns your preferences, dietary requirements, and past visits to personalise every future experience for you.</div></div>
+      <div class="tech-card fade-in"><div class="tech-card-icon">🎨</div><div class="tech-card-title">Theme Engine</div><div class="tech-card-desc">A central scheduling system that plans, manages, and executes every theme transformation automatically.</div></div>
+      <div class="tech-card fade-in"><div class="tech-card-icon">💡</div><div class="tech-card-title">Smart Lighting</div><div class="tech-card-desc">Intelligent LED systems that shift colour, intensity, and direction to match each theme in real time.</div></div>
+      <div class="tech-card fade-in"><div class="tech-card-icon">📽️</div><div class="tech-card-title">Projection Mapping</div><div class="tech-card-desc">Walls, ceilings, and floors become living canvases — projecting immersive visuals that transform the space completely.</div></div>
+      <div class="tech-card fade-in"><div class="tech-card-icon">🤖</div><div class="tech-card-title">Service Robotics</div><div class="tech-card-desc">Smart robots assist with service, delivery, and guest interaction — adding a futuristic layer to hospitality.</div></div>
+      <div class="tech-card fade-in"><div class="tech-card-icon">📱</div><div class="tech-card-title">Customer App</div><div class="tech-card-desc">Book tables, track upcoming themes, manage memberships, and set dining preferences — all from your phone.</div></div>
+    </div>
+    <div class="os-banner fade-in">
+      <div>
+        <div class="os-title">EVOZA Experience OS</div>
+        <div class="os-desc">Our long-term vision is to build a complete hospitality operating system — a central platform that controls themes, lighting, music, digital menus, reservations, and analytics simultaneously. Once proven, this technology will be licensed to other hospitality businesses worldwide.</div>
+      </div>
+      <div class="os-badge">
+        <div class="os-badge-label">Future Product</div>
+        <div class="os-badge-name">Experience OS</div>
+        <div style="margin-top:12px;font-size:12px;color:var(--gold);letter-spacing:2px;">SaaS · B2B</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     GROWTH VISION
+══════════════════════════════════════ -->
+<section id="growth">
+  <div class="growth-bg"></div>
+  <div class="container growth-content">
+    <div class="growth-header fade-in">
+      <p class="section-eyebrow">Growth Vision</p>
+      <h2 class="section-title">From <span class="gold">Visakhapatnam</span> to the World</h2>
+      <div class="section-divider" style="margin:16px auto;"></div>
+      <p class="section-sub" style="margin:0 auto;">Our strategy is clear — build a proven, beloved experience first. Then scale the concept and technology across India and beyond.</p>
+    </div>
+    <div class="phases">
+      <div class="phase fade-in"><div class="phase-circle">1</div><div class="phase-title">Flagship Launch</div><div class="phase-desc">Establish the first EVOZA experience venue and validate demand.</div><div class="phase-loc">Visakhapatnam, AP</div></div>
+      <div class="phase fade-in"><div class="phase-circle">2</div><div class="phase-title">Tech Integration</div><div class="phase-desc">Introduce AI, smart automation, robotics, and the Theme Engine.</div><div class="phase-loc">Phase 2</div></div>
+      <div class="phase fade-in"><div class="phase-circle">3</div><div class="phase-title">Regional Expansion</div><div class="phase-desc">Expand into major South Indian cities with new venues.</div><div class="phase-loc">Hyderabad · Chennai · Bengaluru</div></div>
+      <div class="phase fade-in"><div class="phase-circle">4</div><div class="phase-title">National Scale</div><div class="phase-desc">Franchise model and partnerships across India.</div><div class="phase-loc">Pan-India</div></div>
+      <div class="phase fade-in"><div class="phase-circle">5</div><div class="phase-title">Experience OS</div><div class="phase-desc">License EVOZA's technology platform to the global hospitality industry.</div><div class="phase-loc">Global · SaaS</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     SUSTAINABILITY
+══════════════════════════════════════ -->
+<section id="sustainability">
+  <div class="container">
+    <div class="sust-layout">
+      <div class="fade-in">
+        <p class="section-eyebrow">Sustainability</p>
+        <h2 class="section-title">Luxury with a<br><span class="gold">Conscience</span></h2>
+        <div class="section-divider"></div>
+        <p class="section-sub">EVOZA combines premium hospitality with responsible, sustainable operations. Because great experiences should not come at the planet's expense.</p>
+        <div class="sust-items">
+          <div class="sust-item"><div class="sust-icon">♻️</div><div class="sust-text">Reusable modular decorations — no teardown rebuilds</div></div>
+          <div class="sust-item"><div class="sust-icon">💡</div><div class="sust-text">Energy-efficient LED smart lighting systems</div></div>
+          <div class="sust-item"><div class="sust-icon">🌿</div><div class="sust-text">Responsible food sourcing and waste reduction</div></div>
+          <div class="sust-item"><div class="sust-icon">🍳</div><div class="sust-text">Transparent open kitchen concept</div></div>
+          <div class="sust-item"><div class="sust-icon">📦</div><div class="sust-text">Eco-friendly and responsible packaging</div></div>
+          <div class="sust-item"><div class="sust-icon">⚡</div><div class="sust-text">Smart energy management across all systems</div></div>
+        </div>
+      </div>
+      <div class="sust-img fade-in">
+        <img src="https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=800&h=900&fit=crop&auto=format&q=85" alt="Sustainable Dining"/>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     CTA
+══════════════════════════════════════ -->
+<section id="cta">
+  <div class="cta-bg"></div>
+  <div class="cta-overlay"></div>
+  <div class="cta-content fade-in">
+    <img src="evoza_logo.jpg" alt="EVOZA" class="cta-logo"/>
+    <h2 class="cta-title">Ready for a<br><span class="gold">New Experience?</span></h2>
+    <p class="cta-sub">Every visit should feel like a new experience.</p>
+    <div class="cta-stats">
+      <div><div class="cta-stat-num">2–3</div><div class="cta-stat-lbl">Days per theme</div></div>
+      <div><div class="cta-stat-num">10+</div><div class="cta-stat-lbl">Unique themes</div></div>
+      <div><div class="cta-stat-num">50</div><div class="cta-stat-lbl">VIP slots available</div></div>
+    </div>
+    <div class="hero-buttons">
+      <a href="#" class="btn-primary">Book Your Table</a>
+      <a href="#revenue" class="btn-secondary">Join VIP Membership</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     FOOTER
+══════════════════════════════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <img src="evoza_logo.jpg" alt="EVOZA"/>
+          <span>EVOZA</span>
+        </div>
+        <p class="footer-desc">An AI-powered hospitality and experiential entertainment company transforming traditional dining into immersive, ever-changing experiences.</p>
+        <p class="footer-tagline">"Every Theme. A New Experience."</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Explore</div>
+        <div class="footer-links">
+          <a href="#about">About EVOZA</a>
+          <a href="#themes">Our Themes</a>
+          <a href="#journey">The Experience</a>
+          <a href="#technology">Technology</a>
+          <a href="#growth">Growth Vision</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Visit</div>
+        <div class="footer-links">
+          <a href="#cta">Book a Table</a>
+          <a href="#revenue">VIP Membership</a>
+          <a href="#cta">Private Events</a>
+          <a href="#cta">Corporate Dining</a>
+          <a href="#cta">Gift Experiences</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <div class="footer-links">
+          <a href="#">Visakhapatnam, AP</a>
+          <a href="#">hello@evoza.in</a>
+          <a href="#">WhatsApp Business</a>
+          <a href="#">Instagram</a>
+          <a href="#">YouTube</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2024 EVOZA. All rights reserved. · AI-Powered Hospitality · India</div>
+      <div class="footer-socials">
+        <a href="#" class="social-btn">📸</a>
+        <a href="#" class="social-btn">▶️</a>
+        <a href="#" class="social-btn">💬</a>
+        <a href="#" class="social-btn">🐦</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── SCROLL FADE-IN ─────────────────────────────────────────
+const fadeEls = document.querySelectorAll('.fade-in');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+fadeEls.forEach(el => observer.observe(el));
+
+// ── NAVBAR SCROLL EFFECT ───────────────────────────────────
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('navbar');
+  if (window.scrollY > 60) {
+    nav.style.height = '64px';
+    nav.style.borderBottomColor = 'rgba(201,168,76,0.3)';
+  } else {
+    nav.style.height = '80px';
+    nav.style.borderBottomColor = 'rgba(201,168,76,0.2)';
+  }
+});
+
+// ── SMOOTH ACTIVE NAV LINKS ────────────────────────────────
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) current = s.getAttribute('id');
+  });
+  navLinks.forEach(a => {
+    a.style.color = a.getAttribute('href') === '#' + current
+      ? 'var(--gold)' : '';
+  });
+});
+</script>
+</body>
+</html>
